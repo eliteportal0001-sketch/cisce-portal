@@ -1,0 +1,477 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+
+.main-container {
+    background-color: transparent;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 0 20px 0;
+    text-align: center;
+    border-bottom: 5px solid #f9cd1a;
+    /* Yellow border */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.logo-container img {
+    height: 90px;
+}
+
+.header-text {
+    margin-top: 10px;
+}
+
+.header-text h1 {
+    color: #006fa6;
+    /* CISCE Blue */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    margin: 0 0 5px 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.header-text p {
+    color: #5d7e97;
+    /* Muted blue-gray */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 60px;
+    padding: 0 20px;
+}
+
+/* Form Styles */
+.form-container {
+    padding: 0;
+    width: 400px;
+    flex-shrink: 0;
+}
+
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    /* Vertically align label and input */
+    min-height: 40px;
+    /* Ensure consistency */
+}
+
+.form-row label {
+    font-weight: bold;
+    color: #006fa6;
+    width: 120px;
+    /* Increased slightly for better spacing */
+    font-size: 13px;
+    font-family: 'Verdana', sans-serif;
+    flex-shrink: 0;
+}
+
+.input-group {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure consistent height and look for Select and Input */
+.form-control {
+    width: 100%;
+    height: 38px;
+    /* Fixed height for alignment */
+    padding: 6px 10px;
+    border: 1px solid #c0c0c0;
+    /* Slightly darker border */
+    border-radius: 2px;
+    background-color: #f7fcff;
+    font-family: 'Verdana', sans-serif;
+    font-size: 14px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #333;
+    box-sizing: border-box;
+    /* Critical for matching width */
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.4);
+}
+
+select.form-control {
+    background: linear-gradient(to bottom, #f0faff 0%, #e6f6fd 100%);
+    appearance: none;
+    /* Remove default arrow to style custom if needed, but standard is fine for now, just height match */
+    -webkit-appearance: menulist;
+    /* Keep default dropdown arrow */
+}
+
+.index-group .separator {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #555;
+    font-weight: 300;
+}
+
+/* Captcha Styling */
+.captcha-display {
+    width: 200px;
+    /* Wider to match */
+    height: 60px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+/* Captcha lines */
+.captcha-display::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px);
+    pointer-events: none;
+}
+
+.captcha-text {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 32px;
+    color: #000;
+    letter-spacing: 6px;
+    transform: rotate(-2deg);
+    position: relative;
+    z-index: 1;
+}
+
+.captcha-text::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 3px;
+    background: red;
+    top: 50%;
+    left: -10%;
+    transform: rotate(15deg);
+    opacity: 0.6;
+}
+
+.refresh-icon {
+    display: none;
+    /* Icon not in provided screenshot */
+}
+
+/* Action Buttons */
+.action-row {
+    margin-top: 30px;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 18px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: 'Verdana', sans-serif;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn i {
+    font-size: 14px;
+}
+
+/* Print Button */
+.btn-secondary {
+    background-color: #cfd8dc;
+    /* Light Gray */
+    color: #555;
+    border: 1px solid #b0bec5;
+}
+
+/* Show Result Button */
+.btn-primary {
+    background-color: #b0d6e6;
+    /* Specific light teal/blue */
+    color: #004a80;
+    /* Dark Blue text */
+    border: 1px solid #90caf9;
+}
+
+.btn-primary:hover {
+    background-color: #9cd0e6;
+}
+
+.error-msg {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: right;
+    font-family: sans-serif;
+}
+
+
+/* Info Panel (Right Side) */
+.info-panel {
+    width: 600px;
+    padding-top: 0;
+    color: #333;
+}
+
+.instructions h3,
+.disclaimer h3 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    color: #333;
+    font-weight: normal;
+    margin: 0 0 15px 0;
+    letter-spacing: 0.5px;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-family: 'Verdana', sans-serif;
+    color: #444;
+    display: flex;
+    align-items: flex-start;
+    line-height: 1.5;
+}
+
+.instructions .icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #444;
+    margin-top: -2px;
+}
+
+.disclaimer {
+    margin-top: 40px;
+}
+
+.disclaimer p {
+    font-size: 11px;
+    font-family: 'Verdana', sans-serif;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.browser-note {
+    margin-top: 20px;
+    font-size: 11px;
+    color: #444;
+}
+
+/* Result Section */
+.result-container {
+    background-color: #fff;
+    padding: 20px;
+ 
+}
+
+.result-header h3 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    padding-bottom: 15px;
+}
+
+.candidate-info p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #333;
+    font-family: 'Verdana', sans-serif;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 25px;
+    font-size: 14px;
+    font-family: 'Verdana', sans-serif;
+}
+
+.result-table th,
+.result-table td {
+    border: 1px solid #ccc;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.result-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #444;
+}
+
+.result-table td:last-child {
+    text-align: center;
+}
+
+.final-result {
+    margin-top: 25px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 10px;
+    font-size: 15px;
+    background-color: #fafafa;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Disclaimer inside result */
+.result-disclaimer {
+    margin-top: 40px;
+    font-size: 10px;
+    color: #666;
+    line-height: 1.4;
+    text-align: justify;
+    font-family: 'Verdana', sans-serif;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+footer {
+    padding: 15px;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    font-family: 'Arial', sans-serif;
+    margin-top: auto;
+    /* Push to bottom */
+    width: 100%;
+    background-color: transparent;
+    /* blend with curve */
+}
+
+@media print {
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+
+    body {
+        margin: 1cm;
+        /* visible margin content */
+        background: none;
+        /* No background colors/images unless -webkit-print-color-adjust is used, but implied clean */
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide everything by default */
+    body>* {
+        display: none !important;
+    }
+
+    /* Only show main container and its children that are relevant */
+    .main-container {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    /* Ensure children are visible */
+    .content-wrapper,
+    .result-container {
+        display: block !important;
+    }
+
+    /* explicit hides */
+    header,
+    .form-container,
+    footer,
+    .btn,
+    .info-panel {
+        display: none !important;
+    }
+
+    .content-wrapper {
+        margin: 0;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+    .result-container {
+        width: 100%;
+        box-shadow: none;
+        border: none;
+        padding: 40px;
+        /* Slight padding for aesthetics */
+        margin: 0;
+    }
+
+    .result-disclaimer {
+        display: block !important;
+        page-break-inside: avoid;
+        /* Prevent splitting */
+    }
+
+    /* Ensure table fits */
+    .result-table {
+        width: 100%;
+    }
+}

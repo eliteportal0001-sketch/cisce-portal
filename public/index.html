@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CISCE Results</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using a generic serif font to match the academic look -->
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Using a generic serif font to match the academic look -->
+</head>
+
+<body style="background: linear-gradient(140deg, rgb(242, 246, 247) 17%, rgba(0, 0, 0, 0) 36%) no-repeat fixed, radial-gradient(at 43.5% -128%, rgb(251, 251, 251) 83%, rgb(196, 232, 241) 83%) no-repeat fixed; font-family: &quot;PT Serif&quot;, serif;">
+    <div class="main-container">
+        <header>
+            <div class="logo-container">
+                <img src="https://results.cisce.org/ResultsView/content/images/300KB/cisce-60-logo-7.png"
+                    alt="CISCE Logo" class="cisce-logo">
+            </div>
+            <div class="header-text">
+                <h1>COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS</h1>
+                <p>CISCE conveys its Best Wishes to all ICSE & ISC candidates</p>
+            </div>
+        </header>
+
+        <div id="search-container" class="content-wrapper">
+            <div class="form-container">
+                <div class="form-row">
+                    <label for="course">COURSE</label>
+                    <div class="input-group">
+                        <select id="course" class="form-control">
+                            <option value="">- Course -</option>
+                            <option value="ISC">ISC</option>
+                            <option value="ICSE">ICSE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="uid">UID</label>
+                    <div class="input-group">
+                        <input type="text" id="uid" class="form-control" placeholder="Unique ID" maxlength="10">
+                        <span class="helper-text"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="index-1">INDEX NO.</label>
+                    <div class="input-group index-group">
+                        <input type="text" id="index-1" class="form-control" placeholder="1234567" maxlength="7"
+                            style="width: 60%;">
+                        <span class="separator">/</span>
+                        <input type="text" id="index-2" class="form-control" placeholder="093" maxlength="3"
+                            style="width: 30%;">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Captcha Image Row (No Label, just offset) -->
+                    <label></label> <!-- Empty label to maintain flex spacing or use margin -->
+                    <div class="input-group">
+                        <div class="captcha-display">
+                            <span class="captcha-text">MLWAO</span>
+                            <div class="refresh-icon" onclick="alert('Refresh Captcha')">&#x21bb;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row captcha-input-row">
+                    <label>CAPTCHA</label>
+                    <div class="input-group">
+                        <input type="text" id="captcha-input" class="form-control" placeholder="Type Captcha">
+                    </div>
+                </div>
+
+                <div class="form-row action-row">
+                    <button id="print-btn" class="btn btn-secondary" disabled><i class="fas fa-print"></i> Print
+                        Result</button>
+                    <button id="show-result-btn" class="btn btn-primary"><i class="fas fa-eye"></i> Show Result</button>
+                </div>
+
+                <div id="error-message" class="error-msg"></div>
+            </div>
+
+            <div id="info-panel" class="info-panel">
+                <div class="instructions">
+                    <h3>Instructions:</h3>
+                    <ul>
+                        <li><span class="icon"><i class="fas fa-hand-point-right"></i></span> Enter the Course Code,
+                            Candidate UID, Index number and
+                            the Captcha.</li>
+                        <li><span class="icon"><i class="fas fa-hand-point-right"></i></span> Click on the Show Result
+                            button to get the results.</li>
+                        <li><span class="icon"><i class="fas fa-hand-point-right"></i></span> Click on the Print Result
+                            button to get the Print .</li>
+                    </ul>
+                </div>
+
+                <div class="disclaimer">
+                    <h3>Disclaimer</h3>
+                    <p>All information on this web site (https://results.cisce.org) is provided free of cost for
+                        personal perusal only, and as such, is made available 'AS IN'. Every effort has been made to
+                        ensure accuracy of the data on this site. However, CISCE does not make any claim about the
+                        accuracy or validity of the content on this site, or its suitability for any specific purpose
+                        whatsoever, whether express or implied. CISCE will not be responsible for any errors or omission
+                        at this Web site. In particular but without limiting thereto, CISCE disclaim any responsibility
+                        for typographical errors and other inaccuracies that may be contained within this site. Since
+                        everybody who access any information on this website are doing so voluntarily and of their own
+                        accord, any outcome (decision or claim) of such access is understood to be their sole
+                        responsibility. CISCE reserves the right to make changes to this information and site without
+                        notice.</p>
+                    <p class="browser-note">This application is best viewed in Google Chrome and Firefox Browsers.</p>
+                </div>
+            </div>
+
+            <div id="result-display" class="result-container" style="display: none;">
+                <div class="result-header">
+                    <h3>INDIAN SCHOOL CERTIFICATE (CLASS XII) RESULTS 2025</h3>
+                </div>
+
+                <div class="candidate-info">
+                    <p><strong>Candidate Name:</strong> <span id="res-name" style="margin-left: 10px;"></span></p>
+                    <p><strong>Candidate ID:</strong> <span id="res-uid" style="margin-left: 10px;"></span></p>
+                    <p><strong>School:</strong> <span id="res-school" style="margin-left: 10px;"></span></p>
+                </div>
+
+                <table class="result-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Percentage Marks</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result-body">
+                        <!-- Rows will be injected here -->
+                    </tbody>
+                </table>
+
+                <div class="final-result">
+                    <strong>Result</strong>
+                    <span id="res-status" style="float: right; font-weight: bold;">QUALIFIED</span>
+                </div>
+
+                <div class="result-disclaimer">
+                    <strong>Disclaimer</strong>
+                    <p>All information on this web site (https://results.cisce.org) is provided free of cost for
+                        personal perusal only, and as such, is made available 'AS IN'. Every effort has been made to
+                        ensure accuracy of the data on this site. However, CISCE does not make any claim about the
+                        accuracy or validity of the content on this site, or its suitability for any specific purpose
+                        whatsoever, whether express or implied. CISCE will not be responsible for any errors or omission
+                        at this Web site. In particular but without limiting thereto, CISCE disclaim any responsibility
+                        for typographical errors and other inaccuracies that may be contained within this site. Since
+                        everybody who access any information on this website are doing so voluntarily and of their own
+                        accord, any outcome (decision or claim) of such access is understood to be their sole
+                        responsibility. CISCE reserves the right to make changes to this information and print
+                        without notice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Council for the Indian School Certificate Examinations. All rights reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
