@@ -475,3 +475,97 @@ footer {
         width: 100%;
     }
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 60px 10px 20px 10px; /* Space for logo */
+    }
+
+    .logo-container {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-bottom: 10px;
+    }
+
+    .logo-container img {
+        height: 70px;
+    }
+
+    .header-text h1 {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+
+    .header-text p {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+
+    .form-container {
+        width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+
+    .form-row label {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .action-row {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .info-panel {
+        width: 100%;
+    }
+
+    .instructions h3, .disclaimer h3 {
+        font-size: 18px;
+    }
+
+    .result-header h3 {
+        font-size: 14px;
+    }
+
+    .candidate-info p {
+        font-size: 12px;
+    }
+
+    .result-table {
+        font-size: 12px;
+    }
+
+    .result-table th, .result-table td {
+        padding: 8px 6px;
+    }
+
+    .final-result {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .final-result span {
+        float: none !important;
+    }
+}
