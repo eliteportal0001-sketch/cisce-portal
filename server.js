@@ -114,6 +114,100 @@ app.post('/api/results', async (req, res) => {
 
 
 
+app.get('/api/results/direct', async (req, res) => {
+    try {
+        const { class: course, uid, index, index_no } = req.query;
+
+        if (!uid || !index || !index_no) {
+            return res.status(400).json({
+                success: false,
+                message: 'UID and Index Number required'
+            });
+        }
+
+        let classValue;
+        if (course.toUpperCase() === 'ICSE') classValue = '10';
+        else if (course.toUpperCase() === 'ISC') classValue = '+2';
+
+        const studentQuery = `
+            SELECT *
+            FROM students_icse
+            WHERE roll_number = $1
+            AND sheet_no = $2
+            AND RIGHT(header_two, 3) = $3
+            AND class = $4
+            LIMIT 1
+            `;
+
+        const studentResult = await pool.query(studentQuery, [
+            uid,
+            index,
+            index_no,
+            classValue
+        ]);
+
+        if (studentResult.rows.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'Result not found'
+            });
+        }
+
+        const student = studentResult.rows[0];
+
+        const subjectsQuery = `
+            SELECT sub_name, marks
+            FROM subjects_icse
+            WHERE student_id = $1
+            `;
+
+        const subjectsResult = await pool.query(subjectsQuery, [student.id]);
+
+        const scores = subjectsResult.rows.map(sub => ({
+            subject: sub.sub_name,
+            marks: sub.marks
+        }));
+
+        scores.push({
+            subject: 'SUPW & COMMUNITY SERVICE',
+            marks: 'A'
+        })
+
+        // percentage logic
+        let percentage = 0;
+        if (course.toUpperCase() === 'ICSE') {
+            percentage = calculateICSEPercentage(scores);
+        } else if (course.toUpperCase() === 'ISC') {
+            percentage = calculateISCPercentage(scores);
+        }
+
+        const responseData = {
+            name: student.candidate_name,
+            roll_number: student.roll_number,
+            school: student.school_no + '    ' + student.school_name,
+            course: course.toUpperCase(),
+            result: "QUALIFIED",
+            percentage: percentage,
+            scores: scores
+        };
+
+        res.json({
+            success: true,
+            data: responseData,
+            year: student.year
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+    }
+});
+
+
+
 function calculateICSEPercentage(subjects) {
     let englishMarks = [];
     let historyGeo = [];

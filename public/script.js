@@ -99,4 +99,42 @@ document.addEventListener('DOMContentLoaded', () => {
             tbody.appendChild(row);
         });
     }
+
+    // Auto-fetch if URL parameters are present
+    const urlParams = new URLSearchParams(window.location.search);
+    const classParam = urlParams.get('class');
+    const uidParam = urlParams.get('uid');
+    const indexParam = urlParams.get('index');
+    const indexNoParam = urlParams.get('index_no');
+
+    if (classParam && uidParam && indexParam && indexNoParam) {
+        // Pre-fill fields if possible
+        courseInput.value = classParam.toUpperCase();
+        uidInput.value = uidParam;
+        index1Input.value = indexParam;
+        index2Input.value = indexNoParam;
+
+        // Hide info panel and show loading (or just fetch)
+        infoPanel.style.display = 'none';
+        errorMsg.textContent = 'Fetching result...';
+
+        fetch(`/api/results/direct?class=${classParam}&uid=${uidParam}&index=${indexParam}&index_no=${indexNoParam}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    errorMsg.textContent = '';
+                    displayResult(data.data, classParam.toUpperCase(), data.year);
+                    printBtn.disabled = false;
+                    resultDisplay.style.display = 'block';
+                } else {
+                    errorMsg.textContent = data.message || 'Error fetching results.';
+                    infoPanel.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMsg.textContent = 'Server error. Please try again later.';
+                infoPanel.style.display = 'block';
+            });
+    }
 });
