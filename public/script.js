@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
         infoPanel.style.display = 'none';
         errorMsg.textContent = 'Fetching result...';
 
+        document.body.classList.add('auto-search');
+
         fetch(`/api/results/direct?class=${classParam}&uid=${uidParam}&index=${indexParam}&index_no=${indexNoParam}`)
             .then(response => response.json())
             .then(data => {

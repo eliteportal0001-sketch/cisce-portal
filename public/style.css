@@ -324,6 +324,17 @@ select.form-control {
  
 }
 
+.digi-locker-verified {
+    display: none;
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
 .result-header h3 {
     text-align: center;
     font-size: 18px;
@@ -567,5 +578,22 @@ footer {
 
     .final-result span {
         float: none !important;
+    }
+
+    body.auto-search header {
+        display: none !important;
+    }
+    
+    body.auto-search .form-container {
+        display: none !important;
+    }
+    
+    body.auto-search .content-wrapper {
+        margin-top: 0;
+        padding-top: 20px;
+    }
+
+    body.auto-search .digi-locker-verified {
+        display: block !important;
     }
 }
