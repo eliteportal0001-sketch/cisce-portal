@@ -321,7 +321,7 @@ select.form-control {
 .result-container {
     background-color: #fff;
     padding: 20px;
- 
+
 }
 
 .digi-locker-verified {
@@ -490,7 +490,8 @@ footer {
 /* Mobile Responsiveness */
 @media screen and (max-width: 768px) {
     header {
-        padding: 60px 10px 20px 10px; /* Space for logo */
+        padding: 60px 10px 20px 10px;
+        /* Space for logo */
     }
 
     .logo-container {
@@ -549,7 +550,8 @@ footer {
         width: 100%;
     }
 
-    .instructions h3, .disclaimer h3 {
+    .instructions h3,
+    .disclaimer h3 {
         font-size: 18px;
     }
 
@@ -565,7 +567,8 @@ footer {
         font-size: 12px;
     }
 
-    .result-table th, .result-table td {
+    .result-table th,
+    .result-table td {
         padding: 8px 6px;
     }
 
@@ -583,11 +586,11 @@ footer {
     body.auto-search header {
         display: none !important;
     }
-    
+
     body.auto-search .form-container {
         display: none !important;
     }
-    
+
     body.auto-search .content-wrapper {
         margin-top: 0;
         padding-top: 20px;
@@ -595,5 +598,9 @@ footer {
 
     body.auto-search .digi-locker-verified {
         display: block !important;
+    }
+
+    body.auto-search .result-disclaimer {
+        display: none !important;
     }
 }
