@@ -90,6 +90,8 @@ app.post('/api/results', async (req, res) => {
         const responseData = {
             name: student.candidate_name,
             roll_number: student.roll_number,
+            father_name: student.father_name,
+            mother_name: student.mother_name,
             school: student.school_no + '    ' + student.school_name,
             course: course.toUpperCase(),
             result: "QUALIFIED",
