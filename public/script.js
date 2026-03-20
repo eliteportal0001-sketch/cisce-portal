@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayResult(data, course, year) {
         document.getElementById('res-name').textContent = data.name;
+        document.getElementById('res-father-name').textContent = data.father_name;
+        document.getElementById('res-mother-name').textContent = data.mother_name;
         document.getElementById('res-uid').textContent = data.roll_number;
         document.getElementById('res-school').textContent = data.school;
         document.getElementById('res-status').textContent = data.result;
