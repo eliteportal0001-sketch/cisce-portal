@@ -76,7 +76,7 @@ app.post('/api/results', async (req, res) => {
 
         scores.push({
             subject: 'SUPW & COMMUNITY SERVICE',
-            marks: 'A'
+            marks: 'B'
         })
 
         // percentage logic
@@ -172,7 +172,7 @@ app.get('/api/results/direct', async (req, res) => {
 
         scores.push({
             subject: 'SUPW & COMMUNITY SERVICE',
-            marks: 'A'
+            marks: 'B'
         })
 
         // percentage logic
