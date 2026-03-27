@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Dynamic Header
         const headerTitle = document.querySelector('.result-header h3');
         if (course === 'ICSE') {
-            headerTitle.textContent = `INDIAN SCHOOL CERTIFICATE (CLASS X) RESULTS ${year}`;
+            headerTitle.textContent = `INDIAN SCHOOL CERTIFICATE (CLASS X) RESULTS ${parseInt(year) + 1}`;
         } else {
-            headerTitle.textContent = `INDIAN SCHOOL CERTIFICATE (CLASS XII) RESULTS ${year}`;
+            headerTitle.textContent = `INDIAN SCHOOL CERTIFICATE (CLASS XII) RESULTS ${parseInt(year) + 1}`;
         }
 
         const tbody = document.getElementById('result-body');
